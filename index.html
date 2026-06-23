@@ -256,3 +256,192 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeFix 🌍 | Share. Solve. Grow.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .hero-bg { background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%); }
+    .glass { background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); }
+    .dark .glass { background: rgba(31,41,55,0.85); }
+    .problem-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .problem-card:hover { transform: translateY(-8px); }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen">
+
+  <!-- Navbar + Hero (same as before, shortened for space) -->
+  <nav class="border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg fixed w-full z-50">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <span class="text-3xl">🌍</span>
+        <h1 class="text-2xl font-bold">LifeFix</h1>
+      </div>
+      <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-200 dark:hover:bg-gray-800">
+        <i id="theme-icon" class="fas fa-moon text-xl"></i>
+      </button>
+    </div>
+  </nav>
+
+  <header class="hero-bg pt-24 pb-20 text-white text-center">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="text-6xl font-bold leading-tight mb-4">Real problems.<br>Real AI help.</h1>
+      <p class="text-xl max-w-xl mx-auto">Share your challenge. Get community ideas + AI suggestions.</p>
+    </div>
+  </header>
+
+  <div class="max-w-6xl mx-auto px-6 py-12">
+
+    <!-- Post Form -->
+    <div class="glass rounded-3xl shadow-2xl p-8 mb-12">
+      <h2 class="text-3xl font-semibold mb-6">What's your challenge today?</h2>
+      <textarea id="problemInput" rows="4" 
+        class="w-full p-6 text-lg rounded-2xl border dark:bg-gray-900 focus:ring-emerald-500"
+        placeholder="Example: I can't stop procrastinating on important tasks..."></textarea>
+      
+      <div class="flex gap-4 mt-6">
+        <select id="category" class="px-6 py-4 rounded-2xl border dark:bg-gray-900 flex-1">
+          <option value="">Category</option>
+          <option value="School">🏫 School</option>
+          <option value="Tech">💻 Tech</option>
+          <option value="Finance">💰 Finance</option>
+          <option value="Health">🧠 Health</option>
+          <option value="Relationships">❤️ Relationships</option>
+          <option value="Career">💼 Career</option>
+        </select>
+        <button onclick="postProblem()" 
+          class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-2xl font-semibold flex-1">
+          Post Problem
+        </button>
+      </div>
+    </div>
+
+    <!-- Feed -->
+    <h2 class="text-3xl font-semibold mb-8">Community Problems</h2>
+    <div id="feed" class="space-y-8"></div>
+  </div>
+
+  <!-- AI Suggestion Modal -->
+  <div id="aiModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="glass max-w-2xl w-full mx-4 rounded-3xl p-8">
+      <h3 class="text-2xl font-bold mb-2">💡 AI LifeFix Suggestion</h3>
+      <div id="aiResponse" class="text-lg leading-relaxed min-h-[200px]"></div>
+      <button onclick="closeModal()" 
+        class="mt-6 w-full bg-gray-200 dark:bg-gray-700 py-4 rounded-2xl font-semibold">Close</button>
+    </div>
+  </div>
+
+  <script>
+    let problems = JSON.parse(localStorage.getItem('lifeFixProblems')) || [];
+
+    function saveProblems() {
+      localStorage.setItem('lifeFixProblems', JSON.stringify(problems));
+    }
+
+    function renderFeed() {
+      const feed = document.getElementById('feed');
+      feed.innerHTML = '';
+
+      if (problems.length === 0) {
+        feed.innerHTML = `<p class="text-center py-20 text-gray-500">No problems yet. Post one above! ✨</p>`;
+        return;
+      }
+
+      problems.slice().reverse().forEach((problem, idx) => {
+        const card = document.createElement('div');
+        card.className = 'problem-card glass rounded-3xl p-8';
+        card.innerHTML = `
+          <div class="flex justify-between items-start">
+            <span class="px-5 py-2 bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 rounded-full text-sm">
+              ${problem.category || 'General'}
+            </span>
+            <span class="text-xs text-gray-500">${new Date(problem.timestamp).toLocaleDateString()}</span>
+          </div>
+          <p class="mt-6 text-lg">${problem.text}</p>
+          
+          <div class="mt-8 flex gap-4">
+            <button onclick="getAISuggestion(${idx})" 
+              class="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-4 rounded-2xl font-medium hover:scale-105 transition">
+              💡 Get AI Suggestion
+            </button>
+            <button onclick="likeProblem(${idx})" 
+              class="flex-1 border border-gray-300 dark:border-gray-600 py-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+              ❤️ Like (${problem.likes || 0})
+            </button>
+          </div>
+        `;
+        feed.appendChild(card);
+      });
+    }
+
+    function postProblem() {
+      const input = document.getElementById('problemInput');
+      if (!input.value.trim()) return alert("Please describe your problem");
+
+      problems.push({
+        text: input.value.trim(),
+        category: document.getElementById('category').value,
+        timestamp: Date.now(),
+        likes: 0
+      });
+
+      saveProblems();
+      renderFeed();
+      input.value = '';
+    }
+
+    async function getAISuggestion(index) {
+      const problem = problems[index];
+      const modal = document.getElementById('aiModal');
+      const responseDiv = document.getElementById('aiResponse');
+      
+      responseDiv.innerHTML = `<p class="text-gray-500">Thinking of the best solution for you...</p>`;
+      modal.classList.remove('hidden');
+
+      // Mock AI Response (replace this with real API call later)
+      setTimeout(() => {
+        const suggestions = [
+          "Break the problem into tiny 5-minute steps. Use the Pomodoro technique (25 min work + 5 min break).",
+          "Try the '2-minute rule': If a task takes less than 2 minutes, do it immediately.",
+          "Write down 3 things you're grateful for before bed. This improves mindset significantly.",
+          "Talk to one person about this problem — sharing often brings unexpected solutions."
+        ];
+        
+        const randomTip = suggestions[Math.floor(Math.random() * suggestions.length)];
+        
+        responseDiv.innerHTML = `
+          <p class="text-emerald-600 font-medium mb-3">For: "${problem.text.substring(0, 80)}..."</p>
+          <p class="leading-relaxed">${randomTip}</p>
+          <p class="mt-6 text-sm text-gray-500">— Powered by AI Life Coach</p>
+        `;
+      }, 1200);
+    }
+
+    function closeModal() {
+      document.getElementById('aiModal').classList.add('hidden');
+    }
+
+    function likeProblem(idx) {
+      problems[idx].likes = (problems[idx].likes || 0) + 1;
+      saveProblems();
+      renderFeed();
+    }
+
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+      const icon = document.getElementById('theme-icon');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+    }
+
+    // Initialize
+    renderFeed();
+  </script>
+</body>
+</html>
