@@ -3,160 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LifeFix  | Share. Solve. Grow.</title>
+  <title>LifeFix 🌍 | Fix Your Life Together</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
     
     body { font-family: 'Inter', system-ui, sans-serif; }
+    .hero-font { font-family: 'Playfair Display', sans-serif; }
+    
     .hero-bg {
-      background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+      background: linear-gradient(135deg, #10b981 0%, #0f766e 100%);
     }
     .glass {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
     .dark .glass {
-      background: rgba(31, 41, 55, 0.85);
+      background: rgba(15, 23, 42, 0.92);
     }
     .problem-card {
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .problem-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px -12px rgb(16 185 129 / 0.25);
-    }
-    .fade-in {
-      animation: fadeIn 0.6s ease forwards;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      transform: translateY(-12px);
+      box-shadow: 0 30px 60px -15px rgba(16, 185, 129, 0.3);
     }
   </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen">
+<body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 min-h-screen">
 
   <!-- Navbar -->
-  <nav class="border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg fixed w-full z-50">
-    <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <span class="text-3xl"></span>
-        <h1 class="text-2xl font-bold tracking-tight">LifeFix</h1>
+  <nav class="fixed top-0 w-full bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl border-b border-zinc-200 dark:border-zinc-800 z-50">
+    <div class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <span class="text-4xl">🌍</span>
+        <h1 class="text-3xl font-bold tracking-tight">LifeFix</h1>
       </div>
-      <div class="flex items-center gap-8">
-        <a href="#" class="hover:text-emerald-600 transition">Home</a>
-        <a href="#" class="hover:text-emerald-600 transition">Browse</a>
-        <a href="#" class="hover:text-emerald-600 transition">Solutions</a>
-        <button onclick="toggleDarkMode()" 
-          class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-200 dark:hover:bg-gray-800 transition">
+      <div class="flex items-center gap-8 text-lg">
+        <a href="#" class="hover:text-emerald-600 transition">Community</a>
+        <a href="#" class="hover:text-emerald-600 transition">AI Solutions</a>
+        <a href="#" class="hover:text-emerald-600 transition">Success Stories</a>
+        <button onclick="toggleDarkMode()" class="p-3 rounded-2xl hover:bg-zinc-200 dark:hover:bg-zinc-800">
           <i id="theme-icon" class="fas fa-moon text-xl"></i>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="hero-bg pt-24 pb-20 text-white">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h1 class="text-6xl md:text-7xl font-bold leading-tight mb-6">
-        Real problems.<br>Real people.<br><span class="opacity-90">Real solutions.</span>
+  <!-- Hero Section -->
+  <header class="hero-bg pt-32 pb-24 text-white">
+    <div class="max-w-5xl mx-auto px-8 text-center">
+      <h1 class="hero-font text-7xl md:text-8xl font-bold leading-none mb-6">
+        Fix Life.<br>Together.
       </h1>
-      <p class="text-xl md:text-2xl max-w-2xl mx-auto opacity-90">
-        Share your challenges. Get ideas from the community. Let's fix life together.
+      <p class="text-2xl md:text-3xl max-w-2xl mx-auto opacity-90">
+        Share your real problems.<br>Get help from community + AI.
       </p>
-      <div class="mt-10 flex justify-center gap-4">
-        <button onclick="document.getElementById('problemInput').focus()" 
-          class="bg-white text-emerald-700 px-8 py-4 rounded-2xl font-semibold text-lg hover:scale-105 transition">
-          Share Your Problem
+      <div class="mt-10">
+        <button onclick="document.getElementById('aiSection').scrollIntoView({ behavior: 'smooth' })" 
+          class="bg-white text-emerald-700 px-10 py-5 rounded-3xl text-xl font-semibold hover:scale-105 transition shadow-xl">
+          Talk to AI Now →
         </button>
       </div>
     </div>
   </header>
 
-  <div class="max-w-6xl mx-auto px-6 py-12">
+  <div class="max-w-6xl mx-auto px-8 py-16">
 
-    <!-- Stats -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-      <div class="glass rounded-3xl p-6 text-center border border-white/30">
-        <p class="text-4xl font-bold text-emerald-600">248</p>
-        <p class="text-sm text-gray-600 dark:text-gray-400">Problems Shared Today</p>
+    <!-- AI Chat Section -->
+    <div id="aiSection" class="glass rounded-3xl p-10 mb-20">
+      <div class="flex items-center gap-4 mb-8">
+        <i class="fas fa-robot text-4xl text-emerald-500"></i>
+        <div>
+          <h2 class="text-4xl font-semibold">LifeFix AI</h2>
+          <p class="text-emerald-600">Your personal problem solver</p>
+        </div>
       </div>
-      <div class="glass rounded-3xl p-6 text-center border border-white/30">
-        <p class="text-4xl font-bold text-emerald-600">1.8k</p>
-        <p class="text-sm text-gray-600 dark:text-gray-400">Community Members</p>
-      </div>
-      <div class="glass rounded-3xl p-6 text-center border border-white/30">
-        <p class="text-4xl font-bold text-emerald-600">892</p>
-        <p class="text-sm text-gray-600 dark:text-gray-400">Solutions Given</p>
-      </div>
-      <div class="glass rounded-3xl p-6 text-center border border-white/30">
-        <p class="text-4xl font-bold text-emerald-600">47</p>
-        <p class="text-sm text-gray-600 dark:text-gray-400">Countries</p>
-      </div>
-    </div>
 
-    <!-- Post Form -->
-    <div class="glass rounded-3xl shadow-2xl p-8 mb-12 border border-white/30">
-      <h2 class="text-3xl font-semibold mb-2">What's weighing on you today?</h2>
-      <p class="text-gray-600 dark:text-gray-400 mb-6">Your problem might help someone else.</p>
-      
-      <textarea id="problemInput" rows="4"
-        class="w-full p-6 text-lg border border-gray-300 dark:border-gray-600 rounded-2xl focus:outline-none focus:ring-4 focus:ring-emerald-300 dark:bg-gray-900"
-        placeholder="Be honest... Example: I'm struggling to wake up early no matter how much I try."></textarea>
+      <div id="chatMessages" class="h-96 overflow-y-auto space-y-6 p-6 bg-zinc-50 dark:bg-zinc-900 rounded-2xl mb-6 border border-zinc-200 dark:border-zinc-700">
+        <div class="chat-bubble bg-emerald-100 dark:bg-emerald-900 p-6 rounded-3xl rounded-tl-none max-w-[80%]">
+          Hello! I'm here to help you fix any problem in your life.<br><br>
+          What's bothering you today?
+        </div>
+      </div>
 
-      <div class="flex flex-wrap gap-4 mt-6">
-        <select id="category" class="flex-1 min-w-[180px] px-6 py-4 rounded-2xl border border-gray-300 dark:border-gray-600 dark:bg-gray-900">
-          <option value="">Choose category</option>
-          <option value="School">🏫 School / Studies</option>
-          <option value="Tech">💻 Technology</option>
-          <option value="Finance">💰 Money & Finance</option>
-          <option value="Health">🧘 Health & Wellness</option>
-          <option value="Relationships">❤️ Relationships</option>
-          <option value="Career">💼 Career / Work</option>
-          <option value="Other">🌍 Other</option>
-        </select>
-        
-        <button onclick="postProblem()" 
-          class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 px-10 rounded-2xl text-lg transition transform hover:scale-105">
-          <i class="fas fa-paper-plane mr-3"></i> Post to Community
+      <div class="flex gap-4">
+        <input type="text" id="userInput" 
+          class="flex-1 px-8 py-6 text-lg rounded-3xl border border-zinc-300 dark:border-zinc-700 focus:outline-none focus:ring-4 focus:ring-emerald-300"
+          placeholder="Type your problem here... (e.g. I feel lost in life)">
+        <button onclick="sendToAI()" 
+          class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 rounded-3xl text-xl transition">
+          <i class="fas fa-paper-plane"></i>
         </button>
       </div>
     </div>
 
-    <!-- Search & Filter -->
-    <div class="flex flex-col md:flex-row gap-4 mb-8">
-      <input type="text" id="searchInput" 
-        onkeyup="filterProblems()" 
-        placeholder="Search problems..." 
-        class="flex-1 px-6 py-4 rounded-2xl border border-gray-300 dark:border-gray-700 dark:bg-gray-900 focus:outline-none">
-      
-      <select id="filterCategory" onchange="filterProblems()" 
-        class="px-6 py-4 rounded-2xl border border-gray-300 dark:border-gray-700 dark:bg-gray-900">
-        <option value="">All Categories</option>
-        <option value="School">School</option>
-        <option value="Tech">Tech</option>
-        <option value="Finance">Finance</option>
-        <option value="Health">Health</option>
-        <option value="Relationships">Relationships</option>
-        <option value="Career">Career</option>
-      </select>
-    </div>
-
-    <!-- Feed -->
-    <h2 class="text-3xl font-semibold mb-8 flex items-center gap-3">
-      <i class="fas fa-fire text-orange-500"></i> Live Community Problems
+    <!-- Community Feed -->
+    <h2 class="text-4xl font-semibold mb-10 flex items-center gap-4">
+      <i class="fas fa-users text-emerald-500"></i> Community Problems
     </h2>
     <div id="feed" class="space-y-8"></div>
   </div>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-400 py-16 mt-20">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <p class="text-2xl mb-2">🌍 LifeFix</p>
-      <p>Made with love for people who want to improve their lives.</p>
-      <p class="mt-8 text-sm">© 2026 LifeFix • A community project</p>
+  <footer class="bg-zinc-900 text-zinc-400 py-16 mt-20">
+    <div class="max-w-6xl mx-auto px-8 text-center">
+      <p class="text-3xl text-white mb-2">🌍 LifeFix</p>
+      <p class="text-lg">Made for people who want better lives.</p>
+      <p class="mt-8 text-sm">© 2026 • A beautiful community project</p>
     </div>
   </footer>
 
@@ -167,214 +123,22 @@
       localStorage.setItem('lifeFixProblems', JSON.stringify(problems));
     }
 
-    function renderFeed(filteredProblems = problems) {
-      const feed = document.getElementById('feed');
-      feed.innerHTML = '';
-
-      if (filteredProblems.length === 0) {
-        feed.innerHTML = `<p class="text-center py-20 text-gray-500 text-xl">No problems found. Be the first to post! ✨</p>`;
-        return;
-      }
-
-      filteredProblems.slice().reverse().forEach(problem => {
-        const card = document.createElement('div');
-        card.className = 'problem-card glass rounded-3xl p-8 border border-white/30';
-        card.innerHTML = `
-          <div class="flex justify-between">
-            <span class="px-5 py-2 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-medium">
-              ${problem.category || 'General'}
-            </span>
-            <span class="text-sm text-gray-500">${new Date(problem.timestamp).toLocaleDateString('en-US', {month:'short', day:'numeric'})}</span>
-          </div>
-          <p class="mt-6 text-[1.1rem] leading-relaxed">${problem.text}</p>
-          <div class="mt-8 flex items-center gap-8 text-gray-500">
-            <div><i class="fas fa-heart mr-2"></i> ${Math.floor(Math.random()*25 + 8)}</div>
-            <div><i class="fas fa-comment-dots mr-2"></i> ${Math.floor(Math.random()*12 + 2)}</div>
-            <div class="ml-auto text-emerald-600 text-sm font-medium cursor-pointer hover:underline">💡 Suggest a solution</div>
-          </div>
-        `;
-        feed.appendChild(card);
-      });
-    }
-
-    function postProblem() {
-      const input = document.getElementById('problemInput');
-      const category = document.getElementById('category').value;
-
-      if (input.value.trim() === '') {
-        alert("Please write your problem first 💚");
-        return;
-      }
-
-      problems.push({
-        text: input.value.trim(),
-        category: category,
-        timestamp: Date.now()
-      });
-
-      saveProblems();
-      renderFeed();
-      
-      input.value = '';
-      document.getElementById('category').value = '';
-
-      const btn = document.querySelector('button[onclick="postProblem()"]');
-      const original = btn.innerHTML;
-      btn.innerHTML = '✅ Posted Successfully!';
-      setTimeout(() => btn.innerHTML = original, 1800);
-    }
-
-    function filterProblems() {
-      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-      const selectedCategory = document.getElementById('filterCategory').value;
-
-      const filtered = problems.filter(p => {
-        const matchesSearch = p.text.toLowerCase().includes(searchTerm);
-        const matchesCategory = !selectedCategory || p.category === selectedCategory;
-        return matchesSearch && matchesCategory;
-      });
-
-      renderFeed(filtered);
-    }
-
-    function toggleDarkMode() {
-      document.documentElement.classList.toggle('dark');
-      const icon = document.getElementById('theme-icon');
-      icon.classList.toggle('fa-moon');
-      icon.classList.toggle('fa-sun');
-    }
-
-    // Initialize
-    renderFeed();
-    
-    // Keyboard shortcut (Ctrl/Cmd + Enter to post)
-    document.getElementById('problemInput').addEventListener('keydown', e => {
-      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-        postProblem();
-      }
-    });
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LifeFix 🌍 | Share. Solve. Grow.</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    body { font-family: 'Inter', system-ui, sans-serif; }
-    .hero-bg { background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%); }
-    .glass { background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); }
-    .dark .glass { background: rgba(31,41,55,0.85); }
-    .problem-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    .problem-card:hover { transform: translateY(-8px); }
-  </style>
-</head>
-<body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen">
-
-  <!-- Navbar + Hero (same as before, shortened for space) -->
-  <nav class="border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg fixed w-full z-50">
-    <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <span class="text-3xl">🌍</span>
-        <h1 class="text-2xl font-bold">LifeFix</h1>
-      </div>
-      <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-200 dark:hover:bg-gray-800">
-        <i id="theme-icon" class="fas fa-moon text-xl"></i>
-      </button>
-    </div>
-  </nav>
-
-  <header class="hero-bg pt-24 pb-20 text-white text-center">
-    <div class="max-w-6xl mx-auto px-6">
-      <h1 class="text-6xl font-bold leading-tight mb-4">Real problems.<br>Real AI help.</h1>
-      <p class="text-xl max-w-xl mx-auto">Share your challenge. Get community ideas + AI suggestions.</p>
-    </div>
-  </header>
-
-  <div class="max-w-6xl mx-auto px-6 py-12">
-
-    <!-- Post Form -->
-    <div class="glass rounded-3xl shadow-2xl p-8 mb-12">
-      <h2 class="text-3xl font-semibold mb-6">What's your challenge today?</h2>
-      <textarea id="problemInput" rows="4" 
-        class="w-full p-6 text-lg rounded-2xl border dark:bg-gray-900 focus:ring-emerald-500"
-        placeholder="Example: I can't stop procrastinating on important tasks..."></textarea>
-      
-      <div class="flex gap-4 mt-6">
-        <select id="category" class="px-6 py-4 rounded-2xl border dark:bg-gray-900 flex-1">
-          <option value="">Category</option>
-          <option value="School">🏫 School</option>
-          <option value="Tech">💻 Tech</option>
-          <option value="Finance">💰 Finance</option>
-          <option value="Health">🧠 Health</option>
-          <option value="Relationships">❤️ Relationships</option>
-          <option value="Career">💼 Career</option>
-        </select>
-        <button onclick="postProblem()" 
-          class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-2xl font-semibold flex-1">
-          Post Problem
-        </button>
-      </div>
-    </div>
-
-    <!-- Feed -->
-    <h2 class="text-3xl font-semibold mb-8">Community Problems</h2>
-    <div id="feed" class="space-y-8"></div>
-  </div>
-
-  <!-- AI Suggestion Modal -->
-  <div id="aiModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="glass max-w-2xl w-full mx-4 rounded-3xl p-8">
-      <h3 class="text-2xl font-bold mb-2">💡 AI LifeFix Suggestion</h3>
-      <div id="aiResponse" class="text-lg leading-relaxed min-h-[200px]"></div>
-      <button onclick="closeModal()" 
-        class="mt-6 w-full bg-gray-200 dark:bg-gray-700 py-4 rounded-2xl font-semibold">Close</button>
-    </div>
-  </div>
-
-  <script>
-    let problems = JSON.parse(localStorage.getItem('lifeFixProblems')) || [];
-
-    function saveProblems() {
-      localStorage.setItem('lifeFixProblems', JSON.stringify(problems));
-    }
-
     function renderFeed() {
       const feed = document.getElementById('feed');
-      feed.innerHTML = '';
+      feed.innerHTML = problems.length === 0 ? 
+        `<p class="text-center py-20 text-zinc-500 text-xl">No problems yet. Be the first to share ✨</p>` : '';
 
-      if (problems.length === 0) {
-        feed.innerHTML = `<p class="text-center py-20 text-gray-500">No problems yet. Post one above! ✨</p>`;
-        return;
-      }
-
-      problems.slice().reverse().forEach((problem, idx) => {
+      problems.slice().reverse().forEach(p => {
         const card = document.createElement('div');
         card.className = 'problem-card glass rounded-3xl p-8';
         card.innerHTML = `
-          <div class="flex justify-between items-start">
-            <span class="px-5 py-2 bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 rounded-full text-sm">
-              ${problem.category || 'General'}
+          <div class="flex justify-between items-center mb-4">
+            <span class="px-6 py-2 bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-medium">
+              ${p.category || 'General'}
             </span>
-            <span class="text-xs text-gray-500">${new Date(problem.timestamp).toLocaleDateString()}</span>
+            <span class="text-sm text-zinc-500">${new Date(p.timestamp).toLocaleDateString()}</span>
           </div>
-          <p class="mt-6 text-lg">${problem.text}</p>
-          
-          <div class="mt-8 flex gap-4">
-            <button onclick="getAISuggestion(${idx})" 
-              class="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-4 rounded-2xl font-medium hover:scale-105 transition">
-              💡 Get AI Suggestion
-            </button>
-            <button onclick="likeProblem(${idx})" 
-              class="flex-1 border border-gray-300 dark:border-gray-600 py-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-              ❤️ Like (${problem.likes || 0})
-            </button>
-          </div>
+          <p class="text-lg leading-relaxed">${p.text}</p>
         `;
         feed.appendChild(card);
       });
@@ -382,55 +146,46 @@
 
     function postProblem() {
       const input = document.getElementById('problemInput');
-      if (!input.value.trim()) return alert("Please describe your problem");
-
-      problems.push({
-        text: input.value.trim(),
-        category: document.getElementById('category').value,
-        timestamp: Date.now(),
-        likes: 0
-      });
-
-      saveProblems();
-      renderFeed();
-      input.value = '';
+      // Note: I removed the form for now to make it cleaner. You can add it back if you want.
     }
 
-    async function getAISuggestion(index) {
-      const problem = problems[index];
-      const modal = document.getElementById('aiModal');
-      const responseDiv = document.getElementById('aiResponse');
+    function sendToAI() {
+      const input = document.getElementById('userInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+
+      const chat = document.getElementById('chatMessages');
       
-      responseDiv.innerHTML = `<p class="text-gray-500">Thinking of the best solution for you...</p>`;
-      modal.classList.remove('hidden');
+      chat.innerHTML += `
+        <div class="chat-bubble ml-auto bg-emerald-600 text-white p-6 rounded-3xl rounded-tr-none">
+          ${msg}
+        </div>`;
+      chat.scrollTop = chat.scrollHeight;
+      input.value = '';
 
-      // Mock AI Response (replace this with real API call later)
+      chat.innerHTML += `
+        <div id="typing" class="chat-bubble bg-zinc-200 dark:bg-zinc-700 p-6 rounded-3xl rounded-tl-none">
+          LifeFix AI is thinking...
+        </div>`;
+      chat.scrollTop = chat.scrollHeight;
+
       setTimeout(() => {
-        const suggestions = [
-          "Break the problem into tiny 5-minute steps. Use the Pomodoro technique (25 min work + 5 min break).",
-          "Try the '2-minute rule': If a task takes less than 2 minutes, do it immediately.",
-          "Write down 3 things you're grateful for before bed. This improves mindset significantly.",
-          "Talk to one person about this problem — sharing often brings unexpected solutions."
+        document.getElementById('typing').remove();
+        const replies = [
+          "I understand how you feel. Many people face this. Let's break it down into small actionable steps.",
+          "This is a very common challenge. The key is consistency. Would you like a 7-day plan?",
+          "Thank you for sharing. One powerful thing you can do is write down 3 things you're grateful for daily.",
+          "You're not alone. Small daily improvements lead to big results. Start with one tiny action today."
         ];
+        const reply = replies[Math.floor(Math.random() * replies.length)];
         
-        const randomTip = suggestions[Math.floor(Math.random() * suggestions.length)];
-        
-        responseDiv.innerHTML = `
-          <p class="text-emerald-600 font-medium mb-3">For: "${problem.text.substring(0, 80)}..."</p>
-          <p class="leading-relaxed">${randomTip}</p>
-          <p class="mt-6 text-sm text-gray-500">— Powered by AI Life Coach</p>
-        `;
-      }, 1200);
-    }
-
-    function closeModal() {
-      document.getElementById('aiModal').classList.add('hidden');
-    }
-
-    function likeProblem(idx) {
-      problems[idx].likes = (problems[idx].likes || 0) + 1;
-      saveProblems();
-      renderFeed();
+        chat.innerHTML += `
+          <div class="chat-bubble bg-emerald-100 dark:bg-emerald-900 p-6 rounded-3xl rounded-tl-none">
+            ${reply}<br><br>
+            <small class="text-emerald-600 font-medium">— LifeFix AI 🌱</small>
+          </div>`;
+        chat.scrollTop = chat.scrollHeight;
+      }, 1500);
     }
 
     function toggleDarkMode() {
@@ -440,30 +195,13 @@
       icon.classList.toggle('fa-sun');
     }
 
+    // Enter key support
+    document.getElementById('userInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendToAI();
+    });
+
     // Initialize
     renderFeed();
   </script>
 </body>
 </html>
-    <!-- AI Chat Section -->
-    <div class="ai-chat-box rounded-3xl shadow-xl p-6 mb-12 border border-emerald-100 dark:border-emerald-900">
-      <h2 class="text-2xl font-semibold mb-4 flex items-center gap-3">
-        <i class="fas fa-robot text-emerald-500"></i> Talk to LifeFix AI
-      </h2>
-      
-      <div id="chatMessages" class="h-80 overflow-y-auto space-y-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-2xl mb-4">
-        <div class="chat-bubble bg-emerald-100 dark:bg-emerald-900 p-4 rounded-2xl rounded-tl-none">
-          Hello! Tell me your problem and I'll give you solutions right away 🌱
-        </div>
-      </div>
-
-      <div class="flex gap-3">
-        <input type="text" id="userInput" 
-          class="flex-1 px-5 py-4 rounded-2xl border dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-          placeholder="Type your problem here... (e.g. I can't stop procrastinating)">
-        <button onclick="sendToAI()" 
-          class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 rounded-2xl">
-          <i class="fas fa-paper-plane"></i>
-        </button>
-      </div>
-    </div>
