@@ -1,207 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LifeFix 🌍 | Fix Your Life Together</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
-    
-    body { font-family: 'Inter', system-ui, sans-serif; }
-    .hero-font { font-family: 'Playfair Display', sans-serif; }
-    
-    .hero-bg {
-      background: linear-gradient(135deg, #10b981 0%, #0f766e 100%);
-    }
-    .glass {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    .dark .glass {
-      background: rgba(15, 23, 42, 0.92);
-    }
-    .problem-card {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .problem-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 30px 60px -15px rgba(16, 185, 129, 0.3);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeFix AI</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b,#020617);
+    color:white;
+    overflow-x:hidden;
+}
+
+header{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:70px;
+    background:linear-gradient(to right,#38bdf8,#a855f7);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    font-size:20px;
+    margin-top:20px;
+    color:#cbd5e1;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 35px;
+    border-radius:50px;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(to right,#3b82f6,#8b5cf6);
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:scale(1.1);
+}
+
+section{
+    padding:80px 10%;
+}
+
+.title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:50px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:20px;
+    padding:30px;
+    backdrop-filter:blur(10px);
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card h3{
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#cbd5e1;
+}
+
+.stats{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:30px;
+}
+
+.stat{
+    text-align:center;
+}
+
+.stat h2{
+    font-size:50px;
+    color:#38bdf8;
+}
+
+.contact{
+    text-align:center;
+}
+
+input{
+    width:300px;
+    max-width:90%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    margin:10px;
+}
+
+button{
+    padding:15px 25px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#3b82f6;
+    color:white;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#94a3b8;
+}
+
+.glow{
+    position:fixed;
+    width:300px;
+    height:300px;
+    background:#3b82f6;
+    filter:blur(150px);
+    opacity:.2;
+    top:0;
+    left:0;
+}
+
+.glow2{
+    position:fixed;
+    width:300px;
+    height:300px;
+    background:#a855f7;
+    filter:blur(150px);
+    opacity:.2;
+    bottom:0;
+    right:0;
+}
+</style>
 </head>
-<body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 min-h-screen">
 
-  <!-- Navbar -->
-  <nav class="fixed top-0 w-full bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl border-b border-zinc-200 dark:border-zinc-800 z-50">
-    <div class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
-      <div class="flex items-center gap-4">
-        <span class="text-4xl">🌍</span>
-        <h1 class="text-3xl font-bold tracking-tight">LifeFix</h1>
-      </div>
-      <div class="flex items-center gap-8 text-lg">
-        <a href="#" class="hover:text-emerald-600 transition">Community</a>
-        <a href="#" class="hover:text-emerald-600 transition">AI Solutions</a>
-        <a href="#" class="hover:text-emerald-600 transition">Success Stories</a>
-        <button onclick="toggleDarkMode()" class="p-3 rounded-2xl hover:bg-zinc-200 dark:hover:bg-zinc-800">
-          <i id="theme-icon" class="fas fa-moon text-xl"></i>
-        </button>
-      </div>
-    </div>
-  </nav>
+<body>
 
-  <!-- Hero Section -->
-  <header class="hero-bg pt-32 pb-24 text-white">
-    <div class="max-w-5xl mx-auto px-8 text-center">
-      <h1 class="hero-font text-7xl md:text-8xl font-bold leading-none mb-6">
-        Fix Life.<br>Together.
-      </h1>
-      <p class="text-2xl md:text-3xl max-w-2xl mx-auto opacity-90">
-        Share your real problems.<br>Get help from community + AI.
-      </p>
-      <div class="mt-10">
-        <button onclick="document.getElementById('aiSection').scrollIntoView({ behavior: 'smooth' })" 
-          class="bg-white text-emerald-700 px-10 py-5 rounded-3xl text-xl font-semibold hover:scale-105 transition shadow-xl">
-          Talk to AI Now →
-        </button>
-      </div>
-    </div>
-  </header>
+<div class="glow"></div>
+<div class="glow2"></div>
 
-  <div class="max-w-6xl mx-auto px-8 py-16">
+<header>
+<div class="hero">
+<h1>LifeFix AI</h1>
+<p>Your smart assistant for school, work and everyday life.</p>
+<a href="#features" class="btn">Get Started</a>
+</div>
+</header>
 
-    <!-- AI Chat Section -->
-    <div id="aiSection" class="glass rounded-3xl p-10 mb-20">
-      <div class="flex items-center gap-4 mb-8">
-        <i class="fas fa-robot text-4xl text-emerald-500"></i>
-        <div>
-          <h2 class="text-4xl font-semibold">LifeFix AI</h2>
-          <p class="text-emerald-600">Your personal problem solver</p>
-        </div>
-      </div>
+<section id="features">
+<h2 class="title">Features</h2>
 
-      <div id="chatMessages" class="h-96 overflow-y-auto space-y-6 p-6 bg-zinc-50 dark:bg-zinc-900 rounded-2xl mb-6 border border-zinc-200 dark:border-zinc-700">
-        <div class="chat-bubble bg-emerald-100 dark:bg-emerald-900 p-6 rounded-3xl rounded-tl-none max-w-[80%]">
-          Hello! I'm here to help you fix any problem in your life.<br><br>
-          What's bothering you today?
-        </div>
-      </div>
+<div class="cards">
 
-      <div class="flex gap-4">
-        <input type="text" id="userInput" 
-          class="flex-1 px-8 py-6 text-lg rounded-3xl border border-zinc-300 dark:border-zinc-700 focus:outline-none focus:ring-4 focus:ring-emerald-300"
-          placeholder="Type your problem here... (e.g. I feel lost in life)">
-        <button onclick="sendToAI()" 
-          class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 rounded-3xl text-xl transition">
-          <i class="fas fa-paper-plane"></i>
-        </button>
-      </div>
-    </div>
+<div class="card">
+<h3>AI Assistant</h3>
+<p>Ask questions and get smart answers instantly.</p>
+</div>
 
-    <!-- Community Feed -->
-    <h2 class="text-4xl font-semibold mb-10 flex items-center gap-4">
-      <i class="fas fa-users text-emerald-500"></i> Community Problems
-    </h2>
-    <div id="feed" class="space-y-8"></div>
-  </div>
+<div class="card">
+<h3>Homework Help</h3>
+<p>Get support with assignments and learning.</p>
+</div>
 
-  <!-- Footer -->
-  <footer class="bg-zinc-900 text-zinc-400 py-16 mt-20">
-    <div class="max-w-6xl mx-auto px-8 text-center">
-      <p class="text-3xl text-white mb-2">🌍 LifeFix</p>
-      <p class="text-lg">Made for people who want better lives.</p>
-      <p class="mt-8 text-sm">© 2026 • A beautiful community project</p>
-    </div>
-  </footer>
+<div class="card">
+<h3>Productivity</h3>
+<p>Stay organized and achieve your goals faster.</p>
+</div>
 
-  <script>
-    let problems = JSON.parse(localStorage.getItem('lifeFixProblems')) || [];
+<div class="card">
+<h3>Fast Responses</h3>
+<p>Receive answers in seconds.</p>
+</div>
 
-    function saveProblems() {
-      localStorage.setItem('lifeFixProblems', JSON.stringify(problems));
-    }
+<div class="card">
+<h3>Modern Design</h3>
+<p>Clean futuristic interface built for everyone.</p>
+</div>
 
-    function renderFeed() {
-      const feed = document.getElementById('feed');
-      feed.innerHTML = problems.length === 0 ? 
-        `<p class="text-center py-20 text-zinc-500 text-xl">No problems yet. Be the first to share ✨</p>` : '';
+<div class="card">
+<h3>Available Anywhere</h3>
+<p>Works on desktop, tablet and mobile devices.</p>
+</div>
 
-      problems.slice().reverse().forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'problem-card glass rounded-3xl p-8';
-        card.innerHTML = `
-          <div class="flex justify-between items-center mb-4">
-            <span class="px-6 py-2 bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-medium">
-              ${p.category || 'General'}
-            </span>
-            <span class="text-sm text-zinc-500">${new Date(p.timestamp).toLocaleDateString()}</span>
-          </div>
-          <p class="text-lg leading-relaxed">${p.text}</p>
-        `;
-        feed.appendChild(card);
-      });
-    }
+</div>
+</section>
 
-    function postProblem() {
-      const input = document.getElementById('problemInput');
-      // Note: I removed the form for now to make it cleaner. You can add it back if you want.
-    }
+<section>
+<h2 class="title">Our Impact</h2>
 
-    function sendToAI() {
-      const input = document.getElementById('userInput');
-      const msg = input.value.trim();
-      if (!msg) return;
+<div class="stats">
+<div class="stat">
+<h2>10K+</h2>
+<p>Users</p>
+</div>
 
-      const chat = document.getElementById('chatMessages');
-      
-      chat.innerHTML += `
-        <div class="chat-bubble ml-auto bg-emerald-600 text-white p-6 rounded-3xl rounded-tr-none">
-          ${msg}
-        </div>`;
-      chat.scrollTop = chat.scrollHeight;
-      input.value = '';
+<div class="stat">
+<h2>50K+</h2>
+<p>Questions Answered</p>
+</div>
 
-      chat.innerHTML += `
-        <div id="typing" class="chat-bubble bg-zinc-200 dark:bg-zinc-700 p-6 rounded-3xl rounded-tl-none">
-          LifeFix AI is thinking...
-        </div>`;
-      chat.scrollTop = chat.scrollHeight;
+<div class="stat">
+<h2>99%</h2>
+<p>Satisfaction</p>
+</div>
+</div>
 
-      setTimeout(() => {
-        document.getElementById('typing').remove();
-        const replies = [
-          "I understand how you feel. Many people face this. Let's break it down into small actionable steps.",
-          "This is a very common challenge. The key is consistency. Would you like a 7-day plan?",
-          "Thank you for sharing. One powerful thing you can do is write down 3 things you're grateful for daily.",
-          "You're not alone. Small daily improvements lead to big results. Start with one tiny action today."
-        ];
-        const reply = replies[Math.floor(Math.random() * replies.length)];
-        
-        chat.innerHTML += `
-          <div class="chat-bubble bg-emerald-100 dark:bg-emerald-900 p-6 rounded-3xl rounded-tl-none">
-            ${reply}<br><br>
-            <small class="text-emerald-600 font-medium">— LifeFix AI 🌱</small>
-          </div>`;
-        chat.scrollTop = chat.scrollHeight;
-      }, 1500);
-    }
+</section>
 
-    function toggleDarkMode() {
-      document.documentElement.classList.toggle('dark');
-      const icon = document.getElementById('theme-icon');
-      icon.classList.toggle('fa-moon');
-      icon.classList.toggle('fa-sun');
-    }
+<section>
+<h2 class="title">Why LifeFix?</h2>
 
-    // Enter key support
-    document.getElementById('userInput').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') sendToAI();
-    });
+<div class="cards">
 
-    // Initialize
-    renderFeed();
-  </script>
+<div class="card">
+<h3>Easy to Use</h3>
+<p>No complicated setup needed.</p>
+</div>
+
+<div class="card">
+<h3>Smart Technology</h3>
+<p>Built with advanced AI tools.</p>
+</div>
+
+<div class="card">
+<h3>Future Ready</h3>
+<p>Constantly improving and growing.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="contact">
+<h2 class="title">Join LifeFix</h2>
+
+<input type="email" placeholder="Enter your email">
+<button onclick="join()">Join Now</button>
+
+<p id="message"></p>
+
+</section>
+
+<footer>
+<p>© 2026 LifeFix AI. All Rights Reserved.</p>
+</footer>
+
+<script>
+function join(){
+document.getElementById("message").innerHTML =
+"Welcome to LifeFix AI!";
+}
+
+document.addEventListener("mousemove",e=>{
+document.querySelector(".glow").style.left =
+e.clientX-150+"px";
+
+document.querySelector(".glow").style.top =
+e.clientY-150+"px";
+});
+</script>
+
 </body>
 </html>
