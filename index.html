@@ -289,3 +289,28 @@ e.clientY-150+"px";
 
 </body>
 </html>
+<input id="userInput" placeholder="Ask LifeFix">
+<button onclick="askAI()">Send</button>
+
+<div id="chat"></div>
+
+<script>
+function askAI(){
+let input = document.getElementById("userInput").value;
+let reply = "";
+
+if(input.toLowerCase().includes("hello")){
+reply = "Hello! I am LifeFix AI.";
+}
+else if(input.toLowerCase().includes("football")){
+reply = "Football is one of the world's most popular sports.";
+}
+else{
+reply = "I'm still learning. Please ask another question.";
+}
+
+document.getElementById("chat").innerHTML +=
+"<p><b>You:</b> "+input+"</p>" +
+"<p><b>LifeFix:</b> "+reply+"</p>";
+}
+</script>
