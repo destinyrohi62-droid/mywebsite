@@ -4,313 +4,80 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LifeFix AI</title>
+<link rel="stylesheet" href="style.css">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
-
-body{
-    background:linear-gradient(135deg,#0f172a,#1e293b,#020617);
-    color:white;
-    overflow-x:hidden;
-}
-
-header{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-}
-
-.hero h1{
-    font-size:70px;
-    background:linear-gradient(to right,#38bdf8,#a855f7);
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-.hero p{
-    font-size:20px;
-    margin-top:20px;
-    color:#cbd5e1;
-}
-
-.btn{
-    display:inline-block;
-    margin-top:30px;
-    padding:15px 35px;
-    border-radius:50px;
-    text-decoration:none;
-    color:white;
-    background:linear-gradient(to right,#3b82f6,#8b5cf6);
-    transition:.3s;
-}
-
-.btn:hover{
-    transform:scale(1.1);
-}
-
-section{
-    padding:80px 10%;
-}
-
-.title{
-    text-align:center;
-    font-size:40px;
-    margin-bottom:50px;
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-
-.card{
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.1);
-    border-radius:20px;
-    padding:30px;
-    backdrop-filter:blur(10px);
-    transition:.4s;
-}
-
-.card:hover{
-    transform:translateY(-10px);
-}
-
-.card h3{
-    margin-bottom:15px;
-}
-
-.card p{
-    color:#cbd5e1;
-}
-
-.stats{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:30px;
-}
-
-.stat{
-    text-align:center;
-}
-
-.stat h2{
-    font-size:50px;
-    color:#38bdf8;
-}
-
-.contact{
-    text-align:center;
-}
-
-input{
-    width:300px;
-    max-width:90%;
-    padding:15px;
-    border:none;
-    border-radius:10px;
-    margin:10px;
-}
-
-button{
-    padding:15px 25px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    background:#3b82f6;
-    color:white;
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    color:#94a3b8;
-}
-
-.glow{
-    position:fixed;
-    width:300px;
-    height:300px;
-    background:#3b82f6;
-    filter:blur(150px);
-    opacity:.2;
-    top:0;
-    left:0;
-}
-
-.glow2{
-    position:fixed;
-    width:300px;
-    height:300px;
-    background:#a855f7;
-    filter:blur(150px);
-    opacity:.2;
-    bottom:0;
-    right:0;
-}
-</style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
-
 <body>
 
-<div class="glow"></div>
-<div class="glow2"></div>
+<div class="bg"></div>
+
+<nav>
+<h2>LifeFix AI</h2>
+<a href="#join">Join Now</a>
+</nav>
 
 <header>
-<div class="hero">
 <h1>LifeFix AI</h1>
-<p>Your smart assistant for school, work and everyday life.</p>
-<a href="#features" class="btn">Get Started</a>
-</div>
+<p>Your Smart AI Assistant For Everyday Life</p>
+<button onclick="scrollToJoin()">Get Started</button>
 </header>
 
-<section id="features">
-<h2 class="title">Features</h2>
+<section>
+<h2>Features</h2>
 
 <div class="cards">
 
 <div class="card">
 <h3>AI Assistant</h3>
-<p>Ask questions and get smart answers instantly.</p>
+<p>Get instant answers anytime.</p>
 </div>
 
 <div class="card">
 <h3>Homework Help</h3>
-<p>Get support with assignments and learning.</p>
+<p>Study smarter and faster.</p>
 </div>
 
 <div class="card">
 <h3>Productivity</h3>
-<p>Stay organized and achieve your goals faster.</p>
-</div>
-
-<div class="card">
-<h3>Fast Responses</h3>
-<p>Receive answers in seconds.</p>
-</div>
-
-<div class="card">
-<h3>Modern Design</h3>
-<p>Clean futuristic interface built for everyone.</p>
-</div>
-
-<div class="card">
-<h3>Available Anywhere</h3>
-<p>Works on desktop, tablet and mobile devices.</p>
-</div>
-
-</div>
-</section>
-
-<section>
-<h2 class="title">Our Impact</h2>
-
-<div class="stats">
-<div class="stat">
-<h2>10K+</h2>
-<p>Users</p>
-</div>
-
-<div class="stat">
-<h2>50K+</h2>
-<p>Questions Answered</p>
-</div>
-
-<div class="stat">
-<h2>99%</h2>
-<p>Satisfaction</p>
-</div>
-</div>
-
-</section>
-
-<section>
-<h2 class="title">Why LifeFix?</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>Easy to Use</h3>
-<p>No complicated setup needed.</p>
-</div>
-
-<div class="card">
-<h3>Smart Technology</h3>
-<p>Built with advanced AI tools.</p>
+<p>Stay organized and focused.</p>
 </div>
 
 <div class="card">
 <h3>Future Ready</h3>
-<p>Constantly improving and growing.</p>
+<p>Powered by modern technology.</p>
 </div>
 
 </div>
+</section>
+
+<section>
+<h2>LifeFix Chat</h2>
+
+<div id="chat"></div>
+
+<input id="userInput" placeholder="Ask something...">
+<button onclick="askAI()">Send</button>
 
 </section>
 
-<section class="contact">
-<h2 class="title">Join LifeFix</h2>
+<section id="join">
 
-<input type="email" placeholder="Enter your email">
-<button onclick="join()">Join Now</button>
+<h2>Join LifeFix</h2>
+
+<input type="email" id="email" placeholder="Enter Email">
+
+<button onclick="join()">Join</button>
 
 <p id="message"></p>
 
 </section>
 
 <footer>
-<p>© 2026 LifeFix AI. All Rights Reserved.</p>
+<p>© 2026 LifeFix AI</p>
 </footer>
 
-<script>
-function join(){
-document.getElementById("message").innerHTML =
-"Welcome to LifeFix AI!";
-}
-
-document.addEventListener("mousemove",e=>{
-document.querySelector(".glow").style.left =
-e.clientX-150+"px";
-
-document.querySelector(".glow").style.top =
-e.clientY-150+"px";
-});
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
-<input id="userInput" placeholder="Ask LifeFix">
-<button onclick="askAI()">Send</button>
-
-<div id="chat"></div>
-
-<script>
-function askAI(){
-let input = document.getElementById("userInput").value;
-let reply = "";
-
-if(input.toLowerCase().includes("hello")){
-reply = "Hello! I am LifeFix AI.";
-}
-else if(input.toLowerCase().includes("football")){
-reply = "Football is one of the world's most popular sports.";
-}
-else{
-reply = "I'm still learning. Please ask another question.";
-}
-
-document.getElementById("chat").innerHTML +=
-"<p><b>You:</b> "+input+"</p>" +
-"<p><b>LifeFix:</b> "+reply+"</p>";
-}
-</script>
